@@ -89,7 +89,10 @@ public class Village {
 	}
 	
 	public String afficherMarche() {
-		return marche.afficherMarche();
+		StringBuilder chaine = new StringBuilder();
+		chaine.append(String.format("Le marché du village \"%s\" possède plusieurs étals :\n", nom));
+		chaine.append(marche.afficherMarche());
+		return chaine.toString();
 	}
 	
 	private static class Marche{
@@ -162,9 +165,9 @@ public class Village {
 				}
 			}
 			if(nb_etal_vide < 2) {
-				affichage.append(String.format("Il reste %d étal non utilisé dans le marché\n", nb_etal_vide));
+				affichage.append(String.format("Il reste %d étal non utilisé dans le marché.\n", nb_etal_vide));
 			}else {
-				affichage.append(String.format("Il reste %d étals non utilisés dans le marché\n", nb_etal_vide));
+				affichage.append(String.format("Il reste %d étals non utilisés dans le marché.\n", nb_etal_vide));
 			}
 			
 			return affichage.toString();
