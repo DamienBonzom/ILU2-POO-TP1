@@ -12,7 +12,8 @@ public class ScenarioCasDegrade {
 		
 		Etal etal = new Etal();
 		Gaulois damien = new Gaulois("damien", 100);
-		etal.acheterProduit(2, null);
+		etal.occuperEtal(damien, "midl_coin", 100);
+		etal.acheterProduit(2, damien);
 		System.out.println("Fin du test");
 
 	}
