@@ -44,8 +44,9 @@ public class Village {
 		return null;
 	}
 
-	public String afficherVillageois() {
+	public String afficherVillageois() throws VillageSansChefException {
 		StringBuilder chaine = new StringBuilder();
+		if(chef == null) {throw new VillageSansChefException("Le village n'a pas de chef");}
 		if (nbVillageois < 1) {
 			chaine.append("Il n'y a encore aucun habitant au village du chef "
 					+ chef.getNom() + ".\n");
@@ -57,6 +58,7 @@ public class Village {
 			}
 		}
 		return chaine.toString();
+
 	}
 	
 	public String installerVendeur(Gaulois vendeur, String produit, int nbProduit) {
@@ -64,7 +66,7 @@ public class Village {
 		int indice_etal_libre = marche.trouverEtalLibre();
 		chaine.append(String.format("%s cherche un endroit pour vendre %d %s.\n", vendeur.getNom(), nbProduit, produit));
 		marche.utiliserEtal(indice_etal_libre, vendeur, produit, nbProduit);
-		chaine.append(String.format("Le vendeur %s vend des %s à l'étal n°%d.\n", vendeur.getNom(), produit, indice_etal_libre+1));
+		chaine.append(String.format("Le vendeur %s vend des %s ï¿½ l'ï¿½tal nï¿½%d.\n", vendeur.getNom(), produit, indice_etal_libre+1));
 		return chaine.toString();
 	}
 	
@@ -90,7 +92,7 @@ public class Village {
 	
 	public String afficherMarche() {
 		StringBuilder chaine = new StringBuilder();
-		chaine.append(String.format("Le marché du village \"%s\" possède plusieurs étals :\n", nom));
+		chaine.append(String.format("Le marchï¿½ du village \"%s\" possï¿½de plusieurs ï¿½tals :\n", nom));
 		chaine.append(marche.afficherMarche());
 		return chaine.toString();
 	}
@@ -165,9 +167,9 @@ public class Village {
 				}
 			}
 			if(nb_etal_vide < 2) {
-				affichage.append(String.format("Il reste %d étal non utilisé dans le marché.\n", nb_etal_vide));
+				affichage.append(String.format("Il reste %d ï¿½tal non utilisï¿½ dans le marchï¿½.\n", nb_etal_vide));
 			}else {
-				affichage.append(String.format("Il reste %d étals non utilisés dans le marché.\n", nb_etal_vide));
+				affichage.append(String.format("Il reste %d ï¿½tals non utilisï¿½s dans le marchï¿½.\n", nb_etal_vide));
 			}
 			
 			return affichage.toString();
